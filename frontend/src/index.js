@@ -1,4 +1,4 @@
-import './styles.css'
+import './styles/index.css'
 
 export const checkFormValidity = formElement => formElement.checkValidity()
 
