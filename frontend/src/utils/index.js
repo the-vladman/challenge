@@ -25,6 +25,8 @@ const getTotalLoanPayments = (termInMonths = 0, loanAmount = 0) => (FTT + intere
 
 const getMonthlyPayment = (totalLoanPayments = 0, termInMonths = 0) => totalLoanPayments / termInMonths || 0
 
+const setCurrencyValue = (value = 0) => Number(value).toLocaleString('pt-BR')
+
 const calculateLending = values => {
   const termInMonths = values.find(match('parcelas')).value
   const loanAmount = values.find(match('loanValue')).value
@@ -43,5 +45,6 @@ export {
   checkFormValidity,
   getFormValues,
   toStringFormValues,
-  getElementsById
+  getElementsById,
+  setCurrencyValue
 }
