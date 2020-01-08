@@ -14,7 +14,7 @@ export default class CreditasChallenge {
 
   static registerEvents() {
     const formElement = document.querySelector('.form')
-    const formElements = getElementsById(formElement)
+    const formElements = getElementsById(document.querySelectorAll('form *'))
     /* Event Listeners */
     const {
       warrantyValue,
