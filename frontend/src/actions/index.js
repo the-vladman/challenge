@@ -3,7 +3,10 @@ import {
   checkFormValidity,
   getFormValues,
   toStringFormValues,
-  setCurrencyValue
+  setCurrencyValue,
+  getTotalLoanPayments,
+  getMonthlyPayment
+  
 } from '../utils'
 import Constants from '../constants'
 
@@ -50,8 +53,22 @@ const handleWarrantyType = (formElements, event) => {
   parcelas.innerHTML = Constants[value].terms.map(t => `<option value=${t}>${t}</option>`)
 }
 
+const handleChangeForm = formElements => {
+  const {
+    parcelas,
+    loanValue,
+    terms,
+    total
+  } = formElements
+  const totalLoan = getTotalLoanPayments(parcelas.value, loanValue.value)
+  const payment = getMonthlyPayment(totalLoan, parcelas.value)
+  terms.innerHTML = setCurrencyValue(payment)
+  total.innerHTML = `R$ ${setCurrencyValue(totalLoan)}`
+}
+
 export {
   handleInput,
   handleSubmit,
-  handleWarrantyType
+  handleWarrantyType,
+  handleChangeForm
 }

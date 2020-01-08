@@ -5,7 +5,8 @@ import {
 import {
   handleInput,
   handleSubmit,
-  handleWarrantyType
+  handleWarrantyType,
+  handleChangeForm
 } from './actions'
 
 export default class CreditasChallenge {
@@ -32,6 +33,8 @@ export default class CreditasChallenge {
     loanRangeValue.addEventListener('input', e => handleInput(loanValue, e))
     // warrantyType
     warrantyType.addEventListener('change', e => handleWarrantyType(formElements, e))
+    // update form
+    formElement.addEventListener('change', () => handleChangeForm(formElements))
     // Submit form
     formElement.addEventListener('submit', e => handleSubmit(formElement, e))
   }
