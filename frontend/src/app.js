@@ -1,31 +1,11 @@
 import './styles/index.css'
 import {
-  checkFormValidity,
-  getFormValues,
-  toStringFormValues,
   getElementsById
 } from './utils'
-
-export function Send(values) {
-  return new Promise((resolve, reject) => {
-    try {
-      resolve(toStringFormValues(values))
-    } catch (error) {
-      reject(error)
-    }
-  })
-}
-
-export function Submit(formElement) {
-  formElement.addEventListener('submit', function (event) {
-    event.preventDefault()
-    if (checkFormValidity(formElement)) {
-      Send(getFormValues(formElement))
-        .then(result => confirm(result, 'Your form submited success'))
-        .catch(error => Alert('Your form submited error', error))
-    }
-  })
-}
+import {
+  handleInput,
+  handleSubmit
+} from './actions'
 
 export default class CreditasChallenge {
   static initialize() {
