@@ -16,17 +16,20 @@ export default class CreditasChallenge {
     const formElement = document.querySelector('.form')
     const formElements = getElementsById(formElement)
     /* Event Listeners */
+    const {
+      warrantyValue,
+      warrantyRangeValue,
+      loanValue,
+      loanRangeValue
+    } = formElements
     // WarrantyInputs
-    formElements.warrantyValue.addEventListener('change', e =>
-      (formElements.warrantyRangeValue.value = e.target.value))
-    formElements.warrantyRangeValue.addEventListener('input', e =>
-      (formElements.warrantyValue.value = e.target.value))
+    warrantyValue.addEventListener('change', e => handleInput(warrantyRangeValue, e))
+    warrantyRangeValue.addEventListener('input', e => handleInput(warrantyValue, e))
     // LoanInputs
-    formElements.loanValue.addEventListener('change', e =>
-      (formElements.loanRangeValue.value = e.target.value))
-    formElements.loanRangeValue.addEventListener('input', e =>
-      (formElements.loanValue.value = e.target.value))
+    loanValue.addEventListener('change', e => handleInput(loanRangeValue, e))
+    loanRangeValue.addEventListener('input', e => handleInput(loanValue, e))
     
-    Submit(formElement)
+    // Submit form
+    formElement.addEventListener('submit', e => handleSubmit(formElement, e))
   }
 }
