@@ -2,8 +2,10 @@
 import {
   checkFormValidity,
   getFormValues,
-  toStringFormValues
+  toStringFormValues,
+  setCurrencyValue
 } from '../utils'
+import Constants from '../constants'
 
 const handleInput = (element, event) => (element.value = event.target.value)
 
@@ -26,7 +28,30 @@ const handleSubmit = (formElement, event) => {
   }
 }
 
+const handleWarrantyType = (formElements, event) => {
+  const { value } = event.target
+  const {
+    parcelas,
+    loanValue,
+    loanRangeValue,
+    minRange,
+    maxRange
+  } = formElements
+  // Range values
+  loanRangeValue.min = Constants[value].minLoan
+  loanRangeValue.max = Constants[value].maxLoan
+  // loanValues
+  loanValue.value = Constants[value].minLoan
+  loanRangeValue.value = Constants[value].minLoan
+  // display range
+  minRange.innerHTML = setCurrencyValue(Constants[value].minLoan)
+  maxRange.innerHTML = setCurrencyValue(Constants[value].maxLoan)
+  // terms select
+  parcelas.innerHTML = Constants[value].terms.map(t => `<option value=${t}>${t}</option>`)
+}
+
 export {
   handleInput,
-  handleSubmit
+  handleSubmit,
+  handleWarrantyType
 }

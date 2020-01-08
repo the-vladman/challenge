@@ -4,7 +4,8 @@ import {
 } from './utils'
 import {
   handleInput,
-  handleSubmit
+  handleSubmit,
+  handleWarrantyType
 } from './actions'
 
 export default class CreditasChallenge {
@@ -17,6 +18,7 @@ export default class CreditasChallenge {
     const formElements = getElementsById(document.querySelectorAll('form *'))
     /* Event Listeners */
     const {
+      warrantyType,
       warrantyValue,
       warrantyRangeValue,
       loanValue,
@@ -28,7 +30,8 @@ export default class CreditasChallenge {
     // LoanInputs
     loanValue.addEventListener('change', e => handleInput(loanRangeValue, e))
     loanRangeValue.addEventListener('input', e => handleInput(loanValue, e))
-    
+    // warrantyType
+    warrantyType.addEventListener('change', e => handleWarrantyType(formElements, e))
     // Submit form
     formElement.addEventListener('submit', e => handleSubmit(formElement, e))
   }
