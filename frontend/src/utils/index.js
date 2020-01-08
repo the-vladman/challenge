@@ -46,5 +46,8 @@ export {
   getFormValues,
   toStringFormValues,
   getElementsById,
-  setCurrencyValue
+  setCurrencyValue,
+  getTotalLoanPayments,
+  getMonthlyPayment
+
 }
